@@ -11,23 +11,26 @@ import java.awt.event.KeyListener;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private Timer timerGame;
+    private GameObject gameObject;
 
     public GamePanel() {
         this.timerGame = new Timer(1000 / 60, this);
+        gameObject = new GameObject(10, 10, 100, 100);
     }
 
-    public void startGame() {
+    protected void startGame() {
         timerGame.start();
     }
 
     // ActionListener
     @Override
     public void paintComponent(Graphics g) {
-        g.fillRect(10, 10, 100, 100);
+        gameObject.draw(g);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        gameObject.update();
         repaint();
         //System.out.println("In the GamePanel.ActionPerformed() method");
     }
