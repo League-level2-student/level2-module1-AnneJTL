@@ -6,8 +6,8 @@ import java.awt.*;
 public class LeagueInvaders {
     private JFrame window;
     private GamePanel gamePanel;
-    private final int WIDTH = 500;
-    private final int HEIGHT = 800;
+    protected static final int WIDTH = 500;
+    protected static final int HEIGHT = 800;
 
     public static void main(String[] args) {
         new LeagueInvaders().setup();
