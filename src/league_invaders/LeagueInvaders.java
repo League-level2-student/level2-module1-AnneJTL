@@ -11,7 +11,6 @@ public class LeagueInvaders {
 
     public static void main(String[] args) {
         new LeagueInvaders().setup();
-
     }
 
     public LeagueInvaders() {
@@ -22,7 +21,9 @@ public class LeagueInvaders {
     }
 
     private void setup(){
+
         window.add(gamePanel);
+        window.addKeyListener(gamePanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
         window.pack();
