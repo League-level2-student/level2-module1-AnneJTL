@@ -1,6 +1,9 @@
 package league_invaders;
 
-import javax.swing.*;
+import javax.swing.Timer;
+import javax.swing.JPanel;
+
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,8 +11,17 @@ public class GamePanel extends JPanel implements ActionListener  {
     private Timer timerGame;
 
     @Override
+
+    public void paintComponent(Graphics g){
+
+        g.fillRect(10, 10, 100, 100);
+
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("In the GamePanel.ActionPerformed() method");
+        repaint();
+        //System.out.println("In the GamePanel.ActionPerformed() method");
     }
 
     public GamePanel() {
