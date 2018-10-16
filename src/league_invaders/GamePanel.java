@@ -15,10 +15,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private final int END_STATE = 2;
     private int currentState = MENU_STATE;
     private Timer timerGame;
+    private Font titleFont;
     //private GameObject gameObject;
 
     public GamePanel() {
-        this.timerGame = new Timer(1000 / 60, this);
+        timerGame = new Timer(1000 / 60, this);
+        titleFont =  new Font("Arial", Font.PLAIN, 48);
         //gameObject = new GameObject(10, 10, 100, 100);
     }
 
@@ -41,8 +43,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     // Drawing states
     private void drawMenuState(Graphics g){
+        this.setForeground(Color.WHITE);
+        g.setFont(titleFont);
+       // g.setColor(Color.WHITE);
         g.setColor(Color.BLUE);
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+        System.out.println("Avant Text");
+        g.drawString("TEXT", 100, 100);
+
     }
 
     private void drawGameState(Graphics g){
