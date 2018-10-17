@@ -123,10 +123,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         System.out.println("In the GamePanel.keyPressed() method");
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
+            if (currentState == END_STATE){
+                rocketship = new Rocketship(250, 700, 50, 50);
+                objectManager = new ObjectManager(rocketship);
+            }
             currentState++;
             if (currentState > END_STATE){
                 currentState = MENU_STATE;
             }
+
+
         }
         //System.out.println("e.getKeyCode()=" + e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_LEFT){
