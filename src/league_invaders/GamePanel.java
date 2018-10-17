@@ -16,12 +16,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private int currentState = MENU_STATE;
     private Timer timerGame;
     private Font titleFont;
-    //private GameObject gameObject;
+    private Font textFont;
+    private int nbEnemies = 0;
+
 
     public GamePanel() {
         timerGame = new Timer(1000 / 60, this);
         titleFont =  new Font("Arial", Font.PLAIN, 48);
-        //gameObject = new GameObject(10, 10, 100, 100);
+        textFont =  new Font("Arial", Font.PLAIN, 20);
     }
 
     protected void startGame() {
@@ -43,13 +45,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     // Drawing states
     private void drawMenuState(Graphics g){
-        this.setForeground(Color.WHITE);
-        g.setFont(titleFont);
-       // g.setColor(Color.WHITE);
         g.setColor(Color.BLUE);
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-        System.out.println("Avant Text");
-        g.drawString("TEXT", 100, 100);
+
+        g.setColor(Color.WHITE);
+        g.setFont(titleFont);
+        g.drawString("LEAGUE INVADERS", 20, 150);
+        g.setFont(textFont);
+        g.drawString("Press ENTER to start", 150, 400);
+        g.drawString("Press SPACE for instructions", 130, 600);
+
 
     }
 
@@ -61,6 +66,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private void drawEndState(Graphics g){
         g.setColor(Color.RED);
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+
+        g.setColor(Color.BLACK);
+        g.setFont(titleFont);
+        g.drawString("Game Over", 120, 150);
+        g.setFont(textFont);
+        g.drawString("You killed " + nbEnemies + " enemies", 150, 400);
+        g.drawString("Press ENTER to restart", 135, 600);
     }
 
     // ActionListener
