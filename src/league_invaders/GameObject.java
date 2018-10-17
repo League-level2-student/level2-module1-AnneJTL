@@ -18,11 +18,10 @@ public class GameObject {
     }
 
     protected void update(){
-
-
     }
 
     protected void draw(Graphics g){
-
     }
+
+
 }

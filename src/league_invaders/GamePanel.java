@@ -130,6 +130,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT){
             rocketship.setDirection(LeagueInvaders.RIGHT);
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_SPACE){
+            objectManager.addProjectile
+                    (new Projectile
+                            (rocketship.x + rocketship.width/2, rocketship.y, 10, 10));
+
+        }
     }
 
     @Override
