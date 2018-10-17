@@ -19,6 +19,7 @@ public class Rocketship extends GameObject {
     }
 
     protected void update(){
+        super.update();
         if (direction == LeagueInvaders.LEFT) {
             if ((x-speed) <= 0)
                 x = 0;

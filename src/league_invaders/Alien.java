@@ -8,6 +8,7 @@ public class Alien extends GameObject {
     }
 
     protected void update() {
+        super.update();
         y++;
         if (y >= LeagueInvaders.HEIGHT)
             isAlive = false;
