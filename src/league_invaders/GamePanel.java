@@ -1,5 +1,6 @@
 package league_invaders;
 
+import javax.imageio.ImageIO;
 import javax.swing.Timer;
 import javax.swing.JPanel;
 
@@ -8,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private final int MENU_STATE = 0;
@@ -21,6 +24,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private Rocketship rocketship;
     private ObjectManager objectManager;
 
+    // images
+    public static BufferedImage alienImg;
+    public static BufferedImage rocketImg;
+    public static BufferedImage bulletImg;
+    public static BufferedImage spaceImg;
+
 
     public GamePanel() {
         timerGame = new Timer(1000 / 60, this);
@@ -28,6 +37,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         textFont =  new Font("Arial", Font.PLAIN, 20);
         rocketship = new Rocketship(250, 700, 50, 50);
         objectManager = new ObjectManager(rocketship);
+
+
+        try {
+            alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+            rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+            bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+            spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     protected void startGame() {
@@ -70,8 +90,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     }
 
     private void drawGameState(Graphics g){
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+        //g.setColor(Color.BLACK);
+        //g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 
         objectManager.draw(g);
     }
@@ -91,6 +111,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     // ActionListener
     @Override
     public void paintComponent(Graphics g) {
+        g.drawImage(GamePanel.spaceImg, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+
         if(currentState == MENU_STATE){
             drawMenuState(g);
         }else if(currentState == GAME_STATE){
