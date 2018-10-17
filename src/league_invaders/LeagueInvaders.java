@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LeagueInvaders {
+    static final int LEFT = 0;
+    static final int RIGHT = 1;
+    static final int UNDEFINED = 2;
+
+
     private JFrame window;
     private GamePanel gamePanel;
     protected static final int WIDTH = 500;

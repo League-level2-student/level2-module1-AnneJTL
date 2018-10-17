@@ -18,12 +18,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private Font titleFont;
     private Font textFont;
     private int nbEnemies = 0;
+    private Rocketship rocketship;
 
 
     public GamePanel() {
         timerGame = new Timer(1000 / 60, this);
         titleFont =  new Font("Arial", Font.PLAIN, 48);
         textFont =  new Font("Arial", Font.PLAIN, 20);
+        rocketship = new Rocketship(250, 700, 50, 50);
     }
 
     protected void startGame() {
@@ -36,7 +38,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     }
 
     private void updateGameState(){
-
+        //System.out.println("In GamePanel.updateGameState(): " + rocketship.getDirection());
+        rocketship.update();
     }
 
     private void updateEndState(){
@@ -61,6 +64,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     private void drawGameState(Graphics g){
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+
+        rocketship.draw(g);
     }
 
     private void drawEndState(Graphics g){
@@ -115,11 +120,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
                 currentState = MENU_STATE;
             }
         }
+        //System.out.println("e.getKeyCode()=" + e.getKeyCode());
+        if (e.getKeyCode() == KeyEvent.VK_LEFT){
+            rocketship.setDirection(LeagueInvaders.LEFT);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+            rocketship.setDirection(LeagueInvaders.RIGHT);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         System.out.println("In the GamePanel.keyReleased() method");
-
+        rocketship.setDirection(LeagueInvaders.UNDEFINED);
     }
 }
